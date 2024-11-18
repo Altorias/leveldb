@@ -117,7 +117,8 @@ endif(BUILD_SHARED_LIBS)
 # Must be included before CMAKE_INSTALL_INCLUDEDIR is used.
 include(GNUInstallDirs)
 
-add_library(leveldb "")
+add_library(leveldb ""
+        debug/test.cpp)
 target_sources(leveldb
   PRIVATE
     "${PROJECT_BINARY_DIR}/${LEVELDB_PORT_CONFIG_DIR}/port_config.h"
@@ -310,7 +311,7 @@ if(LEVELDB_BUILD_TESTS)
         APPEND PROPERTY COMPILE_OPTIONS -Wno-missing-field-initializers)
   endif(LEVELDB_HAVE_NO_MISSING_FIELD_INITIALIZERS)
 
-  add_executable(leveldb_tests "")
+  add_executable(leveldb_tests "debug/test.cpp")
   target_sources(leveldb_tests
     PRIVATE
       # "db/fault_injection_test.cc"
